@@ -1,9 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".quizActivity"
-    android:theme="@style/Theme.QuizBuster.NoActionBarTheme">
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:theme="@style/Theme.QuizBuster.NoActionBarTheme"
+    tools:context=".QuizActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="20dp">
+        <!--ProgressBar Component-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ProgressBar
+                android:id="@+id/progressQuiz"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:max="10"
+                android:minHeight="30dp"
+                android:layout_marginEnd="10dp"
+                android:progress="0"
+                android:progressTint="@color/success_color"
+                android:indeterminate="false"/>
+
+        <TextView
+            android:id="@+id/tvProgressValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0/10"
+            android:textSize="16sp"
+            android:textColor="@color/primary_text_color"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Do You love C Programming?"
+            android:textSize="18sp"
+            android:textColor="@color/primary_text_color"
+            />
+        <ImageView
+            android:id="@+id/imgQuestionImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ques2"
+            android:contentDescription="Question Image"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Hello World!"
+            android:background="@drawable/default_border"
+            android:textColor="@color/primary_text_color"
+            android:padding="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Hello World!"
+            android:background="@drawable/default_border"
+            android:textColor="@color/primary_text_color"
+            android:padding="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Hello World!"
+            android:background="@drawable/default_border"
+            android:textColor="@color/primary_text_color"
+            android:padding="15dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Hello World!"
+            android:background="@drawable/default_border"
+            android:textColor="@color/primary_text_color"
+            android:padding="15dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmitQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next Question"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textAllCaps="false"
+            android:padding="15dp"
+            app:cornerRadius="8dp"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</ScrollView>
