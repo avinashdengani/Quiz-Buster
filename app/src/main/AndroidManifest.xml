@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizBuster">
-
+        <activity
+            android:name=".quizActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.QuizBuster.NoActionBarTheme">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
