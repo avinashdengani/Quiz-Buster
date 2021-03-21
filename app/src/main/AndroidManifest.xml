@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizBuster">
         <activity
+            android:name=".ResultActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.QuizBuster.NoActionBarTheme" >
+
+        </activity>
+        <activity
             android:name=".quizActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.QuizBuster.NoActionBarTheme">
@@ -21,7 +27,6 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

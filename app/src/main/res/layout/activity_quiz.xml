@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.QuizBuster.NoActionBarTheme"
-    tools:context=".QuizActivity">
+    tools:context=".quizActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -49,62 +49,80 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Do You love C Programming?"
             android:textSize="18sp"
+            android:text="Which of the following statement is correct?"
             android:textColor="@color/primary_text_color"
             />
         <ImageView
             android:id="@+id/imgQuestionImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/ques2"
             android:contentDescription="Question Image"/>
         <TextView
+            android:id="@+id/tvOptionOne"
+            android:text="Public method is accessible to all other classes in the hierarchy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Hello World!"
+            android:background="@drawable/default_border"
+            android:textColor="@color/primary_text_color"
+            android:onClick="onOptionSelected"
+            android:padding="15dp"/>
+        <TextView
+            android:id="@+id/tvOptionTwo"
+            android:layout_width="match_parent"
+            android:text="Public method is accessible only to subclasses of its parent class"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/default_border"
+            android:textColor="@color/primary_text_color"
+            android:onClick="onOptionSelected"
+            android:padding="15dp"/>
+        <TextView
+            android:id="@+id/tvOptionThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Public method can only be called by object of its class"
+            android:onClick="onOptionSelected"
             android:background="@drawable/default_border"
             android:textColor="@color/primary_text_color"
             android:padding="15dp"/>
         <TextView
+            android:id="@+id/tvOptionFour"
+            android:text="Public method can be accessed by calling object of the public class"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:onClick="onOptionSelected"
             android:layout_marginBottom="10dp"
-            android:text="Hello World!"
             android:background="@drawable/default_border"
             android:textColor="@color/primary_text_color"
             android:padding="15dp"/>
-        <TextView
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Hello World!"
-            android:background="@drawable/default_border"
-            android:textColor="@color/primary_text_color"
-            android:padding="15dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="Hello World!"
-            android:background="@drawable/default_border"
-            android:textColor="@color/primary_text_color"
-            android:padding="15dp"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSubmitQuiz"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Next Question"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:textAllCaps="false"
-            android:padding="15dp"
-            app:cornerRadius="8dp"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmitQuiz"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Next Question"
+                android:onClick="onSubmitQuiz"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textAllCaps="false"
+                android:padding="15dp"
+                app:cornerRadius="8dp"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
