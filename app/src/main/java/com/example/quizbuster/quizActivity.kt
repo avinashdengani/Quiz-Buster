@@ -3,6 +3,7 @@ package com.example.quizbuster
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
@@ -31,9 +32,11 @@ class quizActivity : AppCompatActivity() {
     private val totalNumberOfQuestions: Int = questionList.size
 
     private var isOptionSelected: Boolean = false
+    private var previousQuestion:Boolean = false
     private var numOfCorrectAnswers: Int = 0
     private var numOfSkippedAnswers: Int = 0
     private var numOfWrongAnswers: Int = 0
+    /*private var isQuestionVisited: Boolean = false*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,37 +58,44 @@ class quizActivity : AppCompatActivity() {
         tvExplanationHeading = findViewById<TextView>(R.id.tvExplanationHeading)
     }
     public fun onOptionSelected(view: View){
-        if(!isOptionSelected){
-            val selectedOptionViewId = view.id
-            val selectedOptionNumber = getSelectedOptionNumberFromViewId(selectedOptionViewId)
-            val correctOptionNumber = questionList.get(currentQuestion - 1).correctOption
+        val question: Question = questionList.get(currentQuestion - 1)
+        if(!previousQuestion){
+            if(!isOptionSelected){
+                val selectedOptionViewId = view.id
+                val selectedOptionNumber = getSelectedOptionNumberFromViewId(selectedOptionViewId)
+                val correctOptionNumber = questionList.get(currentQuestion - 1).correctOption
 
-            if(correctOptionNumber == selectedOptionNumber){
-                view.setBackgroundResource(R.drawable.correct_option_border)
-                (view as TextView).setTextColor(getColor(R.color.success_color))
-                numOfCorrectAnswers++
-            }else{
-                view.setBackgroundResource(R.drawable.wrong_option_border)
-                (view as TextView).setTextColor(getColor(R.color.danger_color))
-                val correctOptionTextView = findViewById<TextView>(getViewIdFromOptionNumber(correctOptionNumber))
-                correctOptionTextView.setBackgroundResource(R.drawable.correct_option_border)
-                correctOptionTextView.setTextColor(getColor(R.color.success_color))
-                tvExplanationHeading.setVisibility(View.VISIBLE)
-                tvExplanation.setVisibility(View.VISIBLE)
+                question.option_choosed = selectedOptionNumber
+                if(correctOptionNumber == selectedOptionNumber){
+
+                    view.setBackgroundResource(R.drawable.correct_option_border)
+                    (view as TextView).setTextColor(getColor(R.color.success_color))
+                    numOfCorrectAnswers++
+                }else{
+                    view.setBackgroundResource(R.drawable.wrong_option_border)
+                    (view as TextView).setTextColor(getColor(R.color.danger_color))
+                    val correctOptionTextView = findViewById<TextView>(getViewIdFromOptionNumber(correctOptionNumber))
+                    correctOptionTextView.setBackgroundResource(R.drawable.correct_option_border)
+                    correctOptionTextView.setTextColor(getColor(R.color.success_color))
+                    tvExplanationHeading.setVisibility(View.VISIBLE)
+                    tvExplanation.setVisibility(View.VISIBLE)
+                }
+                isOptionSelected = true
             }
-            isOptionSelected = true
         }
     }
-    public fun onPreviousQuestion(view: View){
-        showPreviousQuestion()
-    }
     public fun onSubmitQuiz(view: View){
+        val question: Question = questionList.get(currentQuestion - 1)
+        previousQuestion = false
+        question.isAnswered = true
         if(!isOptionSelected){
+            question.questionVisited = true
             numOfSkippedAnswers++
         }
         currentQuestion++
 
         if(currentQuestion == totalNumberOfQuestions){
+
             btnSubmitQuiz.text = "Submit Quiz"
             showNextQuestion()
         }else if(currentQuestion > totalNumberOfQuestions){
@@ -100,39 +110,53 @@ class quizActivity : AppCompatActivity() {
             finish()
         }else{
             showNextQuestion()
-        }
-        if(currentQuestion > 1){
             btnPreviousQuestion.setVisibility(View.VISIBLE);
         }
     }
-
-    private fun showNextQuestion(){
-        progressbarQuiz.progress = currentQuestion
-        progressbarValue.text = "${currentQuestion}/ ${totalNumberOfQuestions}"
-
-        val question: Question = questionList.get(currentQuestion - 1)
-
-        tvQuestion.text = question.body
-
-        if(! question.hasImage){
-            image.setImageResource(question.image)
-        }else{
-            image.setImageResource(question.image)
+    public fun onPreviousQuestion(view: View){
+        if(currentQuestion <= 2){
+            btnPreviousQuestion.setVisibility(View.INVISIBLE)
         }
+        showPreviousQuestion()
+    }
+    private fun showNextQuestion(){
+        val question: Question = questionList.get(currentQuestion - 1)
+        if(!question.questionVisited) {
+            progressbarQuiz.progress = currentQuestion
+            progressbarValue.text = "${question.id}/ ${totalNumberOfQuestions}"
 
-        tvOptionOne.text = question.options.get(0)
-        tvOptionTwo.text = question.options.get(1)
-        tvOptionThree.text = question.options.get(2)
-        tvOptionFour.text = question.options.get(3)
+            tvQuestion.text = question.body
 
-        tvExplanation.text = question.explanation
+            if (!question.hasImage) {
+                image.setImageResource(question.image)
+            } else {
+                image.setImageResource(question.image)
+            }
 
-        isOptionSelected = false
-        setDefaultStatesOfOption()
+            tvOptionOne.text = question.options.get(0)
+            tvOptionTwo.text = question.options.get(1)
+            tvOptionThree.text = question.options.get(2)
+            tvOptionFour.text = question.options.get(3)
+
+            tvExplanation.text = question.explanation
+            isOptionSelected = false
+            setDefaultStatesOfOption()
+            question.questionVisited = true
+        }else{
+            setDefaultStatesOfOptionForPreviousbtn(1)
+        }
     }
     private fun showPreviousQuestion(){
-
-    }
+        setDefaultStatesOfOption()
+        previousQuestion = true
+        isOptionSelected = true
+        val question: Question = questionList.get(currentQuestion - 2)
+        if(question.id != 10){
+            btnSubmitQuiz.text = "Next Question"
+        }
+        setDefaultStatesOfOptionForPreviousbtn(2)
+        currentQuestion = currentQuestion - 1
+       }
     private fun getSelectedOptionNumberFromViewId(id:Int):Int{
         when(id){
             tvOptionOne.id -> return 1
@@ -152,7 +176,50 @@ class quizActivity : AppCompatActivity() {
             else -> return 0
         }
     }
+    private fun setDefaultStatesOfOptionForPreviousbtn(number:Int){
+        val question: Question = questionList.get(currentQuestion - number)
+        progressbarQuiz.progress = question.id
+        progressbarValue.text = "${question.id}/${totalNumberOfQuestions}"
+        tvQuestion.text = question.body
+        setDefaultStatesOfOption()
 
+        isOptionSelected = true
+        progressbarQuiz.progress = question.id
+        progressbarValue.text = "${question.id}/${totalNumberOfQuestions}"
+        tvQuestion.text = question.body
+
+        if (!question.hasImage) {
+            image.setImageResource(question.image)
+        } else {
+            image.setImageResource(question.image)
+        }
+
+        tvOptionOne.text = question.options.get(0)
+        tvOptionTwo.text = question.options.get(1)
+        tvOptionThree.text = question.options.get(2)
+        tvOptionFour.text = question.options.get(3)
+
+        tvExplanation.text = question.explanation
+        if(question.option_choosed == question.correctOption){
+            val correctOptionTextView = findViewById<TextView>(getViewIdFromOptionNumber(question.option_choosed))
+            correctOptionTextView.setBackgroundResource(R.drawable.correct_option_border)
+            (correctOptionTextView as TextView).setTextColor(getColor(R.color.success_color))
+        }else if(question.option_choosed == 0) {
+            setDefaultStatesOfOption()
+            if(question.isAnswered == false){
+            isOptionSelected = false
+            }
+        }else{
+            val wrongOptionTextView = findViewById<TextView>(getViewIdFromOptionNumber(question.option_choosed))
+            wrongOptionTextView.setBackgroundResource(R.drawable.wrong_option_border)
+            (wrongOptionTextView as TextView).setTextColor(getColor(R.color.danger_color))
+            val correctOptionTextView = findViewById<TextView>(getViewIdFromOptionNumber(question.correctOption))
+            correctOptionTextView.setBackgroundResource(R.drawable.correct_option_border)
+            (correctOptionTextView as TextView).setTextColor(getColor(R.color.success_color))
+            tvExplanationHeading.setVisibility(View.VISIBLE)
+            tvExplanation.setVisibility(View.VISIBLE)
+        }
+    }
     private fun setDefaultStatesOfOption(){
         tvOptionOne.setBackgroundResource(R.drawable.default_border)
         tvOptionTwo.setBackgroundResource(R.drawable.default_border)

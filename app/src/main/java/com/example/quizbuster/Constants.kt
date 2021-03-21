@@ -8,7 +8,7 @@ object Constants {
     const val SKIPPED_ANSWERS: String = "skippedAnswers"
     const val WRONG_ANSWERS: String = "wrongAnswers"
     fun getQuestions(): ArrayList<Question>{
-        val questions = ArrayList<Question>()
+        var questions = ArrayList<Question>()
 
         var options = ArrayList<String>()
 
@@ -21,11 +21,14 @@ object Constants {
         var question = Question(
                 1,
                 "Which of the statement is correct?",
-                true,
-                R.drawable.ques2,
+                false,
+                0,
                 options,
                 1,
-                "None."
+                "None.",
+                true,
+                0,
+                false
         )
 
         questions.add(question)
@@ -43,7 +46,10 @@ object Constants {
                 R.drawable.ques2,
                 options,
                 3,
-                "Two variables with the same name can’t be created in a class."
+                "Two variables with the same name can’t be created in a class.",
+                false,
+                0,
+                false
         )
         questions.add(question)
 
@@ -54,13 +60,16 @@ object Constants {
         options.add("extends")
         options.add("final")
 
-        question = Question(2,
+        question = Question(3,
                 "Which of this keyword can be used in a subclass to call the constructor of superclass?",
                 false,
                 0,
                 options,
                 2,
-                "The super keyword in Java is used in subclasses to access superclass members (attributes, constructors and methods)."
+                "The super keyword in Java is used in subclasses to access superclass members (attributes, constructors and methods).",
+                false,
+                0,
+                false
         )
         questions.add(question)
 
@@ -70,13 +79,16 @@ object Constants {
         options.add("Method Hiding")
         options.add("Method Overriding")
         options.add("None of the Above")
-        question = Question(2,
+        question = Question(4,
                 "What is the process of defining a method in a subclass having same name & type signature as a method in its superclass?",
                 false,
                 0,
                 options,
                 3,
-                "None."
+                "None.",
+                false,
+                0,
+                false
         )
         questions.add(question)
 
@@ -86,13 +98,16 @@ object Constants {
         options.add("Compilation Error")
         options.add("3")
         options.add("7")
-        question = Question(2,
+        question = Question(5,
                 "What will be the output of the following Java program?",
                 true,
                 R.drawable.ques5,
                 options,
                 4,
-                "Both x,and y are pointing to the same array."
+                "Both x,and y are pointing to the same array.",
+                false,
+                0,
+                false
         )
         questions.add(question)
 
@@ -102,13 +117,16 @@ object Constants {
         options.add("extends")
         options.add("abstract and extends")
         options.add("None of the Above")
-        question = Question(2,
+        question = Question(6,
                 "Which of these keywords cannot be used for a class which has been declared final?",
                 false,
                 0,
                 options,
                 1,
                 "A abstract class is incomplete by itself and relies upon its subclasses to provide a complete implementation. If we declare a class final then no class can inherit that class, an abstract class needs its subclasses hence both final and abstract cannot be used for a same class."
+        ,false,
+                0,
+                false
         )
         questions.add(question)
 
@@ -118,13 +136,16 @@ object Constants {
         options.add("Value less than 0")
         options.add("Value greater than 0")
         options.add("compareTo() returns boolean")
-        question = Question(2,
+        question = Question(7,
                 "What is the value returned by function compareTo() if the invoking string is less than the string compared?",
                 false,
                 0,
                 options,
                 2,
-                "  compareTo() function returns zero when both the strings are equal, it returns a value less than zero if the invoking string is less than the other string being compared and value greater than zero when invoking string is greater than the string compared to."
+                "  compareTo() function returns zero when both the strings are equal, it returns a value less than zero if the invoking string is less than the other string being compared and value greater than zero when invoking string is greater than the string compared to.",
+                false,
+                0,
+                false
         )
         questions.add(question)
 
@@ -134,13 +155,16 @@ object Constants {
         options.add("Compilation Error")
         options.add("3 3")
         options.add("Runtime Error")
-        question = Question(2,
+        question = Question(8,
                 "What will be the output of the following Java code?",
                 true,
                 R.drawable.ques8,
                 options,
                 2,
-                "None."
+                "None.",
+                false,
+                0,
+                false
         )
         questions.add(question)
 
@@ -150,13 +174,16 @@ object Constants {
         options.add("String")
         options.add("Array")
         options.add("Class")
-        question = Question(2,
+        question = Question(9,
                 "Which of these classes is not included in java.lang?",
                 false,
                 0,
                 options,
                 3,
-                "Array class is a member of java.util."
+                "Array class is a member of java.util.",
+                false,
+                0,
+                false
         )
         questions.add(question)
 
@@ -172,7 +199,10 @@ object Constants {
                 0,
                 options,
                 1,
-                "A File describes properties of a file, a File object is used to obtain or manipulate the information associated with a disk file, such as the permissions, time date, and directories path, and to navigate subdirectories."
+                "A File describes properties of a file, a File object is used to obtain or manipulate the information associated with a disk file, such as the permissions, time date, and directories path, and to navigate subdirectories.",
+                false,
+                0,
+                false
         )
         questions.add(question)
 
