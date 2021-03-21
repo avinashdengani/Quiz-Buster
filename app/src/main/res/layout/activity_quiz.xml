@@ -107,6 +107,20 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPreviousQuestion"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Previous Question"
+                android:onClick="onPreviousQuestion"
+                android:visibility="invisible"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:textAllCaps="false"
+                android:padding="15dp"
+                app:cornerRadius="8dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSubmitQuiz"
@@ -115,12 +129,39 @@
                 android:layout_height="wrap_content"
                 android:text="Next Question"
                 android:onClick="onSubmitQuiz"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:textAllCaps="false"
                 android:padding="15dp"
                 app:cornerRadius="8dp"/>
 
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvExplanationHeading"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Explanation:"
+                android:textColor="@color/primary_text_color"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp"/>
+            <TextView
+                android:visibility="invisible"
+                android:id="@+id/tvExplanation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="None."
+                android:textSize="18sp"
+                android:textColor="@color/danger_color"
+                />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 

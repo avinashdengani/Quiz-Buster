@@ -6,6 +6,7 @@ class Question(
         val hasImage: Boolean,
         val image: Int,
         val options: ArrayList<String>,
-        val correctOption: Int
+        val correctOption: Int,
+        val explanation: String
 ) {
 }

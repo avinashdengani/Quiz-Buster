@@ -21,7 +21,9 @@ class quizActivity : AppCompatActivity() {
     lateinit var tvOptionThree: TextView
     lateinit var tvOptionFour: TextView
     lateinit var btnSubmitQuiz: Button
-
+    lateinit var btnPreviousQuestion: Button
+    lateinit var tvExplanationHeading: TextView
+    lateinit var tvExplanation: TextView
 
     private var username:String? = null
     private val questionList = Constants.getQuestions()
@@ -48,7 +50,9 @@ class quizActivity : AppCompatActivity() {
         tvOptionFour = findViewById<TextView>(R.id.tvOptionFour)
         image = findViewById<ImageView>(R.id.imgQuestionImage)
         btnSubmitQuiz = findViewById<Button>(R.id.btnSubmitQuiz)
-
+        btnPreviousQuestion =  findViewById<Button>(R.id.btnPreviousQuestion)
+        tvExplanation = findViewById<TextView>(R.id.tvExplanation)
+        tvExplanationHeading = findViewById<TextView>(R.id.tvExplanationHeading)
     }
     public fun onOptionSelected(view: View){
         if(!isOptionSelected){
@@ -66,12 +70,15 @@ class quizActivity : AppCompatActivity() {
                 val correctOptionTextView = findViewById<TextView>(getViewIdFromOptionNumber(correctOptionNumber))
                 correctOptionTextView.setBackgroundResource(R.drawable.correct_option_border)
                 correctOptionTextView.setTextColor(getColor(R.color.success_color))
+                tvExplanationHeading.setVisibility(View.VISIBLE)
+                tvExplanation.setVisibility(View.VISIBLE)
             }
             isOptionSelected = true
-
         }
     }
-
+    public fun onPreviousQuestion(view: View){
+        showPreviousQuestion()
+    }
     public fun onSubmitQuiz(view: View){
         if(!isOptionSelected){
             numOfSkippedAnswers++
@@ -94,6 +101,9 @@ class quizActivity : AppCompatActivity() {
         }else{
             showNextQuestion()
         }
+        if(currentQuestion > 1){
+            btnPreviousQuestion.setVisibility(View.VISIBLE);
+        }
     }
 
     private fun showNextQuestion(){
@@ -115,10 +125,14 @@ class quizActivity : AppCompatActivity() {
         tvOptionThree.text = question.options.get(2)
         tvOptionFour.text = question.options.get(3)
 
+        tvExplanation.text = question.explanation
+
         isOptionSelected = false
         setDefaultStatesOfOption()
     }
+    private fun showPreviousQuestion(){
 
+    }
     private fun getSelectedOptionNumberFromViewId(id:Int):Int{
         when(id){
             tvOptionOne.id -> return 1
@@ -149,5 +163,7 @@ class quizActivity : AppCompatActivity() {
         tvOptionTwo.setTextColor(getColor(R.color.primary_color))
         tvOptionThree.setTextColor(getColor(R.color.primary_color))
         tvOptionFour.setTextColor(getColor(R.color.primary_color))
+        tvExplanationHeading.setVisibility(View.INVISIBLE)
+        tvExplanation.setVisibility(View.INVISIBLE)
     }
 }

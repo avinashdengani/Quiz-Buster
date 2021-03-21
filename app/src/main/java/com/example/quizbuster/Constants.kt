@@ -24,7 +24,8 @@ object Constants {
                 true,
                 R.drawable.ques2,
                 options,
-                1
+                1,
+                "None."
         )
 
         questions.add(question)
@@ -35,12 +36,14 @@ object Constants {
         options.add("8")
         options.add("Compilation Error")
         options.add("Runtime Error")
+
         question = Question(2,
                 "What will be the output of the following Java program?",
                 true,
                 R.drawable.ques2,
                 options,
-                3
+                3,
+                "Two variables with the same name can’t be created in a class."
         )
         questions.add(question)
 
@@ -50,12 +53,14 @@ object Constants {
         options.add("super")
         options.add("extends")
         options.add("final")
+
         question = Question(2,
                 "Which of this keyword can be used in a subclass to call the constructor of superclass?",
                 false,
                 0,
                 options,
-                2
+                2,
+                "The super keyword in Java is used in subclasses to access superclass members (attributes, constructors and methods)."
         )
         questions.add(question)
 
@@ -70,7 +75,8 @@ object Constants {
                 false,
                 0,
                 options,
-                3
+                3,
+                "None."
         )
         questions.add(question)
 
@@ -85,7 +91,8 @@ object Constants {
                 true,
                 R.drawable.ques5,
                 options,
-                4
+                4,
+                "Both x,and y are pointing to the same array."
         )
         questions.add(question)
 
@@ -100,7 +107,8 @@ object Constants {
                 false,
                 0,
                 options,
-                1
+                1,
+                "A abstract class is incomplete by itself and relies upon its subclasses to provide a complete implementation. If we declare a class final then no class can inherit that class, an abstract class needs its subclasses hence both final and abstract cannot be used for a same class."
         )
         questions.add(question)
 
@@ -115,7 +123,8 @@ object Constants {
                 false,
                 0,
                 options,
-                2
+                2,
+                "  compareTo() function returns zero when both the strings are equal, it returns a value less than zero if the invoking string is less than the other string being compared and value greater than zero when invoking string is greater than the string compared to."
         )
         questions.add(question)
 
@@ -130,7 +139,8 @@ object Constants {
                 true,
                 R.drawable.ques8,
                 options,
-                2
+                2,
+                "None."
         )
         questions.add(question)
 
@@ -145,7 +155,8 @@ object Constants {
                 false,
                 0,
                 options,
-                3
+                3,
+                "Array class is a member of java.util."
         )
         questions.add(question)
 
@@ -160,7 +171,8 @@ object Constants {
                 false,
                 0,
                 options,
-                1
+                1,
+                "A File describes properties of a file, a File object is used to obtain or manipulate the information associated with a disk file, such as the permissions, time date, and directories path, and to navigate subdirectories."
         )
         questions.add(question)
 
